@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+</head>
+<style>
+    body {
+        background: #FAFAFA;
+    }
+    .fontGary {
+		color: #ccc !important;
+	}
+    .fontGary .gender {
+        width: 15px;
+        height: 15px;
+        vertical-align: sub;
+        margin-left: 10px;
+    }
+	.fontBlue {
+		color: #56A3EB;
+		padding-left: 10px;
+		cursor: pointer;
+	}
+    .personal-info {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 13px;
+    }
+    .personal-info ul {
+        padding: 20px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+    .personal-info ul .number input {
+        width: 85px;
+        height: 14px;
+        border:  1px solid #ccc;
+        padding: 5px 5px;
+    }
+    .personal-info ul li {
+        list-style-type: none;
+        font-size: 13px;
+        color: #333333;
+    }
+    .personal-info ul li span {
+        margin-right: 5px;
+    }
+    .customer-tags {
+        font-size: 13px;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+    .customer-tags div span {
+        margin-right: 17px;
+    }
+</style>
+<body>
+    <div class="personal-info">
+        <ul>
+            <li class="number">
+                <span>购物账号 : </span>
+                <span class="fontGary" >卡卡西</span>
+                <input type="text"  onkeydown="" onblur=""/>
+                <span class="fontBlue">换绑</span>
+            </li>
+            <li class="name">
+                <span>微信昵称 : </span>
+                <span class="fontGary">卡罗拉 <img class="gender" v-if="1" src="../../assets/man.png" alt=""><img class="gender" v-if="0" src="../../assets/woman.png" alt=""></span>
+                <span></span>
+            </li>
+            <li class="address">
+                <span>地区 : </span>
+                <span class="fontGary">浙江杭州</span>
+            </li>
+        </ul>
+    </div>
+    <div class="personal-info">
+        <ul>
+            <li>最近交易<span class="fontGary">:1笔订单正在交易中</span></li>
+            <li>合计：¥12000 &nbsp; 共成交10笔 &nbsp; 12件宝贝</li>
+            <li>客单价：¥120</li>
+            <li>上次交易时间：2017-11-21 15:00</li>
+        </ul>
+    </div>
+    <div class="customer-tags">
+        <p>客户标签</p>
+        <div><span class="fontGary">我是标签</span><span class="fontGary">我是标签</span><span class="fontBlue">+新增标签</span></div>
+    </div>
+</body>
+<script>
+    window.addEventListener('message', function(e){
+        if (e.data.act == 'article') {
+            // 向父窗框返回响应结果
+            window.parent.postMessage({ 
+                act: 'response', 
+                msg: {
+                    answer: '我接收到啦！'
+                }
+            }, '*');
+        } else {
+            alert('未定义的消息: '+ e.data.act);
+        }
+    }, false);
+</script>
+</html>
